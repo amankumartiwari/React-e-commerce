@@ -20,31 +20,29 @@ const Review = ({ setForm, formData, navigation }) => {
 
       <div class="card">
         <div class="card-header">
-          <h3 style={{ marginTop: "-16px" }}>NAME</h3>
+          <p style={{ marginTop: "-50px" }}>NAME</p>
         </div>
         <div class="card-body">
           <p> First name: {`${firstName}`},</p>
           <p>Last Name: {`${lastName}`}</p>
           <p>Nick Name: {`${nickName}`}</p>
-          <button className="buttonStyle"  onClick={() => go("names")}>
+          <button className="buttonStyle" onClick={() => go("names")}>
             {" "}
             EDIT{" "}
           </button>
         </div>
       </div>
 
-      
-
       <div class="card">
         <div class="card-header">
-          <h3 style={{ marginTop: "-16px" }}>Address</h3>
+          <h3 style={{ marginTop: "-50px" }}>Address</h3>
         </div>
         <div class="card-body">
           <p> Address: {`${address}`}</p>
           <p>City: {` ${city}`} </p>
           <p>State: {`${state}`}</p>
           <p>ZIP: {`${zip}`} </p>
-          <button className="buttonStyle"  onClick={() => go("names")}>
+          <button className="buttonStyle" onClick={() => go("address")}>
             {" "}
             EDIT{" "}
           </button>
@@ -53,17 +51,22 @@ const Review = ({ setForm, formData, navigation }) => {
 
       <div class="card">
         <div class="card-header">
-          <h3 style={{ marginTop: "-16px" }}>Contact</h3>
+          <h3 style={{ marginTop: "-50px" }}>Contact</h3>
         </div>
         <div class="card-body">
-          <p>  Phone: {`${phone}`}</p>
+          <p> Phone: {`${phone}`}</p>
           <p> E-mail: {`${email}`} </p>
-          <button className="buttonStyle"  onClick={() => go("contact")}>
+          <button className="buttonStyle" onClick={() => go("contact")}>
             {" "}
             EDIT{" "}
           </button>
         </div>
       </div>
+
+      <div>
+        <button className="buttonStyle" onClick={() => go("submit")}>Submit</button>
+      </div>
+
     </div>
   );
 };

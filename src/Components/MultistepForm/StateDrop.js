@@ -1,9 +1,9 @@
 import React from "react";
 
 const states = [
-  ["NSW", "New South Wales"],
-  ["VIC", "Victoria"],
-  ["WA", "Western Australia"]
+  ["ND", "New Delhi"],
+  ["MH", "Maharastra"],
+  ["WB", "West Bengal"]
 ];
 
 const StateDrop = ({ label, ...others }) => (
