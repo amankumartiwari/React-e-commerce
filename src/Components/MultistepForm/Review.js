@@ -10,48 +10,59 @@ const Review = ({ setForm, formData, navigation }) => {
     state,
     zip,
     phone,
-    email
+    email,
   } = formData;
   const { go } = navigation;
 
   return (
-    <div className="form">
-      <h3>Review your data</h3>
-      <h4>
-        Name
-        <button onClick={() => go("names")}>Edit</button>
-      </h4>
-      <div>
-        {" "}
-        First name: {`${firstName}`},
-        <br />
-        Last Name: {`${lastName}`},
+    <div className="row">
+      <h3 id="logo">Review </h3>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 style={{ marginTop: "-16px" }}>NAME</h3>
+        </div>
+        <div class="card-body">
+          <p> First name: {`${firstName}`},</p>
+          <p>Last Name: {`${lastName}`}</p>
+          <p>Nick Name: {`${nickName}`}</p>
+          <button className="buttonStyle"  onClick={() => go("names")}>
+            {" "}
+            EDIT{" "}
+          </button>
+        </div>
       </div>
-      <div>Nick Name: {`${nickName}`}</div>
-      <h4>
-        Address
-        <button onClick={() => go("address")}>Edit</button>
-      </h4>
-      <div>
-        Address: {`${address}`},
-        <br />
-        City: {` ${city}`},
-        <br />
-        State: {`${state}`},
-        <br />
-        ZIP: {`${zip}`}
+
+      
+
+      <div class="card">
+        <div class="card-header">
+          <h3 style={{ marginTop: "-16px" }}>Address</h3>
+        </div>
+        <div class="card-body">
+          <p> Address: {`${address}`}</p>
+          <p>City: {` ${city}`} </p>
+          <p>State: {`${state}`}</p>
+          <p>ZIP: {`${zip}`} </p>
+          <button className="buttonStyle"  onClick={() => go("names")}>
+            {" "}
+            EDIT{" "}
+          </button>
+        </div>
       </div>
-      <h4>
-        Contact
-        <button onClick={() => go("contact")}>Edit</button>
-      </h4>
-      <div>
-        Phone: {`${phone}`},
-        <br />
-        E-mail: {`${email}`}
-      </div>
-      <div>
-        <button onClick={() => go("submit")}>Submit</button>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 style={{ marginTop: "-16px" }}>Contact</h3>
+        </div>
+        <div class="card-body">
+          <p>  Phone: {`${phone}`}</p>
+          <p> E-mail: {`${email}`} </p>
+          <button className="buttonStyle"  onClick={() => go("contact")}>
+            {" "}
+            EDIT{" "}
+          </button>
+        </div>
       </div>
     </div>
   );

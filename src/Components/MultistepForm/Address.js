@@ -10,9 +10,9 @@ const Address = ({ setForm, formData, navigation }) => {
 
   return (
     <div className="form">
-      <h3>Address</h3>
+      <h3 id="logo"> Address</h3>
       <ItemForm
-        label="Address"
+        label="First Address"
         name="address"
         value={address}
         onChange={setForm}
@@ -21,8 +21,16 @@ const Address = ({ setForm, formData, navigation }) => {
       <StateDrop label="State" name="state" value={state} onChange={setForm} />
       <ItemForm label="Zip" name="zip" value={zip} onChange={setForm} />
       <div>
-        <button onClick={previous}>Previous</button>
-        <button onClick={next}>Next</button>
+        <button
+          style={{ marginRight: "20px" }}
+          className="buttonStyle"
+          onClick={previous}
+        >
+          Previous
+        </button>
+        <button className="buttonStyle" onClick={next}>
+          Next
+        </button>
       </div>
     </div>
   );

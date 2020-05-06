@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
-
+/* @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap"); */
+@import url("https://fonts.googleapis.com/css?family=Lily+Script+One");
 * {
-  font-family: "Montserrat", sans-serif;
+  font-family:arial,tahoma,sans-serif;
   box-sizing: content-box;
   font-size: 1rem;
   text-align: center
@@ -36,4 +36,112 @@ button {
   max-width: 400px;
   height: auto;
   margin-bottom: -40px;
+}
+
+.buttonStyle {
+  padding:15px 50px;
+	width:auto;
+	background:#1abc9c;
+	border:none;
+	color:white;
+	cursor:pointer;
+	display:inline-block;
+	/* float:right; */
+	clear:right;
+	-webkit-transition:0.2s ease all;
+	   -moz-transition:0.2s ease all;
+	    -ms-transition:0.2s ease all;
+	     -o-transition:0.2s ease all;
+	        transition:0.2s ease all;
+}
+
+.buttonStyle:hover {
+	opacity:0.8;
+}
+
+.inputStyle {
+  font-family: Arial, tahoma, sans-serif;
+  margin:15px 0;
+	padding:15px 10px;
+	width:100%;
+	outline:none;
+	border:1px solid #bbb;
+	border-radius:20px;
+	display:inline-block;
+	-webkit-box-sizing:border-box;
+	   -moz-box-sizing:border-box;
+	        box-sizing:border-box;
+    -webkit-transition:0.2s ease all;
+	   -moz-transition:0.2s ease all;
+	    -ms-transition:0.2s ease all;
+	     -o-transition:0.2s ease all;
+	        transition:0.2s ease all;
+}
+
+.form {
+  margin:0% auto 0 auto;
+	padding:30px;
+	width:400px;
+	height:auto;
+	overflow:hidden;
+	background:white;
+	border-radius:10px;
+}
+form label {
+	font-size:14px;
+	color:darkgray;
+	cursor:pointer;
+}
+
+form label,
+form input {
+	float:left;
+	clear:both;
+}
+#logo {
+	margin:20px auto;
+	width:200px;
+	font-family:'Lily Script One', cursive;
+	font-size:60px;
+	font-weight:bold;
+	text-align:center;
+	color:lightgray;
+	-webkit-transition:0.2s ease all;
+	   -moz-transition:0.2s ease all;
+	    -ms-transition:0.2s ease all;
+	     -o-transition:0.2s ease all;
+	        transition:0.2s ease all;
+}
+
+#logo:hover {
+	color:cornflowerblue;
+}
+
+.row {
+  height: 100%;
+  align-items: center;
+}
+
+.card {
+  border: 1px solid black;
+  width:300px;
+  display: inline-block;
+}
+
+.card-header {
+  color: white;
+  background-color: black;
+  height:50px;
+}
+
+.pricing-column {
+  padding: 3% 2%;
+}
+
+.btn-dark {
+  background-color: black;
+}
+
+.btn-dark:hover {
+  background-color: #343a40;
 }
