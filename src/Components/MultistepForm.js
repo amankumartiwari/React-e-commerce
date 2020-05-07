@@ -7,7 +7,7 @@ import Contact from "./Contact";
 import Review from "./Review";
 import Submit from "./Submit";
 
-import "../../App.css";
+import "../App.css";
 
 const steps = [
   { id: "names" },

@@ -1,158 +1,56 @@
-// import React from "react";
-// const Submit = ({ navigation }) => {
-//   const { go } = navigation;
-//   return (
-//     <div>
-//       <h3>Thank you for submitting. We will be in touch</h3>
-//       New Form -> <button onClick={() => go("names")}>New</button>
-//     </div>
-//   );
-// };
 
-// export default Submit;
+  
+import React from 'react'
+  
 
+const filters = [
+    {id: 'name', title: 'Name', type: 'string'},
+    {id: 'color', title: 'Color', type: 'choice', choices: ['blue', 'orange']},
+    {id: 'height', title: 'Height', type: 'choice', choices: ['tiny', 'small', 'big', 'huge']},
+    {id: 'width', title: 'Width', type: 'choice', choices: ['tiny', 'small', 'big', 'huge']},
+  ]
+  
 
-import React, {useState, useEffect} from 'react';
-import Layout from './Layout';
-// import {getCategories} from '../admin/apiAdmin';
-// import {getFilteredProducts} from './coreApi';
-import Checkbox from './Checkbox';
-import Card from './Card';
-import {prices} from './fixedPrices';
-import Radiobox from './Radiobox';
+  
+  const filterComponents = {
+    string: ({filter, onChange, value}) => <input value={value || ''} onInput={(e) => onChange(filter.id, e.target.value)} />,
+    choice: ({filter, onChange, value}) => (
+      <select value={value || ''} onInput={(e) => onChange(filter.id, e.target.value)} size={1 + filter.choices.length}>
+        <option value="">(none)</option>
+        {filter.choices.map((c) => <option value={c} key={c}>{c}</option>)}
+       </select>
+     ),
+  };
 
-const Shop = () => {
+class Submit extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {filters: {}};
+      this.onChangeFilter = this.onChangeFilter.bind(this);
+    }
+    onChangeFilter(filterId, value) {
+      const newFilterState = Object.assign({}, this.state.filters, {[filterId]: value || undefined});
+      this.setState({filters: newFilterState});
+    }
+    renderFilter(f) {
+      const Component = filterComponents[f.type];
+      return (
+        <div key={f.id}>
+          <b>{f.title}</b>
+          <Component filter={f} value={this.state.filters[f.id]} onChange={this.onChangeFilter} />
+        </div>
+      );
+    }
+    render() {
+      return <table>
+        <tbody>
+          <tr>
+            <td>{filters.map(f => this.renderFilter(f))}</td>
+            <td>Filters: {JSON.stringify(this.state.filters)}</td>
+          </tr>
+        </tbody>
+      </table>;
+    }
+  }
 
-    const [Filters,
-        setFilters] = useState({
-        filters: {
-            categories: [],
-            price: []
-        }
-    });
-    const [categories,
-        setCategories] = useState([]);
-    const [error,
-        setError] = useState(false);
-    const [limit,
-        setLimit] = useState(6);
-    const [skip,
-        setSkip] = useState(0);
-    const [size,
-        setSize] = useState(0);
-    const [filteredResults,
-        setFilteredResults] = useState([]);
-
-    const init = () => {
-        getCategories().then(data => {
-            if (data.error) {
-                setError(data.error);
-            } else {
-                if(data.categories)
-                setCategories(data.categories);
-            }
-        });
-    };
-
-    const loadFilteredResults = (newFilters) => {
-        getFilteredProducts(skip, limit, newFilters).then(data => {
-            if (data.error) {
-                setError(data.error);
-            } else {
-                setFilteredResults(data.data);
-                setSize(data.size);
-                setSkip(0);
-            }
-        }).catch(err => {
-            setError("server is down!!");
-        });
-    };
-    const loadMoreProducts = () => {
-        let toSkip = skip + limit;
-        getFilteredProducts(toSkip, limit, Filters.filters).then(data => {
-            if (data.error) {
-                setError(data.error);
-            } else {
-                setFilteredResults([
-                    ...filteredResults,
-                    ...data.data
-                ]);
-                setSize(data.data.size);
-                setSkip(0);
-            }
-        }).catch(err => {
-            setError("server is down!!");
-        });
-    };
-
-    const loadMoreButton = () => {
-        return (size > 0 && size >= limit && (
-            <button onClick={loadMoreProducts} className="btn btn-warning mb-5">Load more</button>
-        ));
-    };
-
-    const handleFilters = (filters, filterBy) => {
-        // console.log(filterBy, " ", filters);
-        const newFilters = {
-            ...Filters
-        };
-        newFilters.filters[filterBy] = filters;
-        if (filterBy === "price") {
-            let priceValues = handlePrice(filters);
-            newFilters.filters[filterBy] = priceValues;
-        }
-        loadFilteredResults(newFilters.filters);
-        setFilters(newFilters);
-    };
-    const handlePrice = (value) => {
-        const data = prices;
-        let array = [];
-        for (let key in data) {
-            if (data[key]._id === parseInt(value)) {
-                array = data[key].array;
-            }
-        }
-        return array;
-    };
-    useEffect(() => {
-        init();
-        loadFilteredResults(skip, limit, Filters.filters);
-    }, []);
-
-    return (
-        <Layout
-            title="Shop Page"
-            description="Search Products"
-            className="container-fluid">
-            <div className="row">
-                <div className="col-3">
-                    <h4>Filter By Category</h4>
-                    <ul>
-                        <Checkbox
-                            categories={categories}
-                            handleFilters={filters => handleFilters(filters, 'categories')}/>
-                    </ul>
-                    <h4>Filter By Price Range</h4>
-                    <div>
-                        <Radiobox
-                            prices={prices}
-                            handleFilters={filters => handleFilters(filters, 'price')}/>
-                    </div>
-                </div>
-                <div className="col-9">
-                    <h2 className="mb-4">Products</h2>
-                    <div className="row">
-                        { filteredResults  && filteredResults.map((p, i) => (
-                            <div key={i} className="col-4 mb-3">
-                                <Card product={p}/>
-                            </div>
-                        ))}
-                    </div>
-                    {loadMoreButton()}
-                </div>
-            </div>
-        </Layout>
-    );
-};
-
-export default Shop;
+  export default Submit;
