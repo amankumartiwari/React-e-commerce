@@ -31,17 +31,22 @@ const filterComponents = {
   // ),
   choice: ({ filter, onChange, value }) => (
     <select
-      style={{ height: "125px", width:'auto', overflowY: "hidden", border: "0px" }}
+      style={{
+        height: "125px",
+        width: "auto",
+        overflowY: "hidden",
+        border: "0px",
+      }}
       type="radio"
       value={value || ""}
       onInput={(e) => onChange(filter.id, e.target.value)}
       size={1 + filter.choices.length}
     >
-      <option style={{color:'black'}} type="radio" value="">
+      <option style={{ color: "black" }} type="radio" value="">
         (none)
       </option>
       {filter.choices.map((c) => (
-        <option style={{color:'black',marginTop:'5px'}}  value={c} key={c}>
+        <option style={{ color: "black", marginTop: "5px" }} value={c} key={c}>
           {c}
         </option>
       ))}
@@ -64,8 +69,8 @@ class Submit extends React.Component {
   renderFilter(f) {
     const Component = filterComponents[f.type];
     return (
-      <div key={f.id}>
-        <h3>{f.title}</h3>
+      <div style={{ margin: "0 10px" }} key={f.id}>
+        <h4>{f.title}</h4>
         <Component
           filter={f}
           value={this.state.filters[f.id]}
@@ -77,10 +82,14 @@ class Submit extends React.Component {
   render() {
     return (
       <div>
-        <div style={{ width: "20%",height:'auto',display:'inline-flex' }}>
+        <h3 id="logo" style={{ width: "auto" }}>
+          BOOKS COLLECTION{" "}
+        </h3>
+        <h3 style={{ display: "inline" }}> ADD FILTERS BY -> </h3>
+        <div style={{ height: "auto", display: "inline-flex" }}>
           {filters.map((f) => this.renderFilter(f))}
         </div>
-        <div style={{ width: "70%" ,display:'inline' }}>
+        <div style={{ width: "70%", display: "inline" }}>
           <Main filters={this.state.filters} />
         </div>
       </div>

@@ -16,7 +16,7 @@ const Review = ({ setForm, formData, navigation }) => {
 
   return (
     <div >
-      <h3 id="logo">Review </h3>
+      <h3 id="logo" style={{width:'auto'}}>Review & EDIT </h3>
 
       <div class="card">
         <div class="card-header">

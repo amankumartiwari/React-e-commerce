@@ -29,7 +29,7 @@ const defaultData = {
   phone: "+61 4252 454 332"
 };
 
-const MultiStepForm = ({ images }) => {
+const MultiStepForm = ( ) => {
   const [formData, setForm] = useForm(defaultData);
   const { step, navigation } = useStep({ initialStep: 0, steps });
   const { id } = step;
