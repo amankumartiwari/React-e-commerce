@@ -1,4 +1,5 @@
 import React from "react";
+import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
 //Temporarily store data here
 const PostsData = [
   {
@@ -6,21 +7,26 @@ const PostsData = [
     price: "200",
     subject: "CPP",
     publications: "ABC",
-    image:'https://images-na.ssl-images-amazon.com/images/I/51lxN5ltLBL._SX258_BO1,204,203,200_.jpg'
+    image:'https://images-na.ssl-images-amazon.com/images/I/51lxN5ltLBL._SX258_BO1,204,203,200_.jpg',
+    description: "JavaScript lies at the heart of almost every modern web application, from social apps to the newest browser-based games. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex language that you can use to build full-scale applications.",
   },
   {
     name: "coding for students",
     price: "400",
     subject: "NODE",
     publications: "MNO",
-    image:'https://images-na.ssl-images-amazon.com/images/I/51lxN5ltLBL._SX258_BO1,204,203,200_.jpg'
+    image:'https://images-na.ssl-images-amazon.com/images/I/51lxN5ltLBL._SX258_BO1,204,203,200_.jpg',
+    description: "With Learning JavaScript Design Patterns, you'll learn how to write beautiful, structured, and maintainable JavaScript by applying classical and modern design patterns to the language. If you want to keep your code efficient, more manageable, and up-to-date with the latest best practices, this book is for you.",
+  
   },
   {
     name: "React heros",
     price: "300",
     subject: "REACT",
     publications: "XYZ",
-    image:'https://images-na.ssl-images-amazon.com/images/I/51lxN5ltLBL._SX258_BO1,204,203,200_.jpg'
+    image:'https://images.unsplash.com/photo-1565229284535-2cbbe3049123?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
+    description: "Like it or not, JavaScript is everywhere these days-from browser to server to mobile-and now you, too, need to learn the language or dive deeper than you have. This concise book guides you into and through JavaScript, written by a veteran programmer who once found himself in the same position.",
+
   },
   {
     name: "JAVASRCIPT",
@@ -34,12 +40,16 @@ const PostsData = [
     price: "200",
     subject: "CPP",
     publications: "ABC",
+    image: 'https://images-na.ssl-images-amazon.com/images/I/51gFdWHOsoL._SX331_BO1,204,203,200_.jpg',
   },
   {
     name: "Express with Node",
     price: "400",
     subject: "NODE",
     publications: "MNO",
+    image: 'https://images-na.ssl-images-amazon.com/images/I/51gFdWHOsoL._SX331_BO1,204,203,200_.jpg',
+    description: "Like it or not, JavaScript is everywhere these days-from browser to server to mobile-and now you, too, need to learn the language or dive deeper than you have. This concise book guides you into and through JavaScript, written by a veteran programmer who once found himself in the same position.",
+
   },
   {
     name: "React heros",
@@ -52,6 +62,9 @@ const PostsData = [
     price: "400",
     subject: "JavaScript",
     publications: "XYZ",
+    image: 'https://images-na.ssl-images-amazon.com/images/I/51gFdWHOsoL._SX331_BO1,204,203,200_.jpg',
+    description: "Take advantage of JavaScript's power to build robust web-scale or enterprise applications that are easy to extend and maintain. By applying the design patterns outlined in this practical book, experienced JavaScript developers will learn how to write flexible and resilient code that's easier-yes, easier-to work with as your code base grows.",
+
   }
   ]
   
@@ -112,12 +125,12 @@ const PostsData = [
 
       return <div>
         <header className="app-header"></header>
-        <Title />
-        <div className="app-card-list" id="app-card-list">
+        {/* <Title /> */}
+        <div className="row" id="app-card-list">
           {
             
           
-           Object.keys(ans).map(key => <Card key={key} index={key} details={ans[key]}/>)
+           Object.keys(ans).map(key => <CardExample key={key} index={key} details={ans[key]}/>)
           
           }
       </div>
@@ -125,73 +138,27 @@ const PostsData = [
     }
   }
   
-  
-  class Title extends React.Component {
-    render() {
-      return <section className="app-title">
-        <div className="app-title-content">
-          <h1>Latest News</h1>
-          <p>Covering March & April 2015</p>
-          <a className="designer-link" href="https://dribbble.com/shots/1978243-Latest-News" target="_blank">Design from <i className="fa fa-dribbble"></i></a>
-        </div>
-      </section>
-    }
+
+  const CardExample = (props) => {
+    return (
+      <MDBCol>
+        <MDBCard style={{ width: "22rem" }}>
+          <MDBCardImage className="img-fluid" src={props.details.image} waves />
+          <MDBCardBody>
+            <MDBCardTitle>{props.details.name}</MDBCardTitle>
+            <MDBCardText>
+              Some quick example text to build on the card title and make
+              up the bulk of the card&apos;s content.
+            </MDBCardText>
+            <MDBBtn href="#"> RS {props.details.price}/-</MDBBtn>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCol>
+    )
   }
   
   
-  class Button extends React.Component {
-    render() {
-      return (
-        <button className="button button-primary">
-          <i className="fa fa-chevron-right"></i> Find out more
-        </button>
-      )
-    }
-  }
-  
-  
-  class CardHeader extends React.Component {
-    render() {
-      const { image, name } = this.props;
-      var style = { 
-          backgroundImage: 'url(' + image + ')',
-      };
-      return (
-        <header style={style} className="card-header">
-          <h4 className="card-header--title">{name}</h4>
-        </header>
-      )
-    }
-  }
-  
-  
-  class CardBody extends React.Component {
-    render() {
-      return (
-        <div className="card-body">
-          <p className="date">March 20 2015</p>
-          
-          <h2>{this.props.title}</h2>
-          
-          <p className="body-content">{this.props.text}</p>
-          
-          <Button />
-        </div>
-      )
-    }
-  }
-  
-  
-  class Card extends React.Component {
-    render() {
-      return (
-        <article className="card">
-          <CardHeader name={this.props.details.name} image={this.props.details.image}/>
-          <CardBody title={this.props.details.title} text={this.props.details.text}/>
-        </article>
-      )
-    }
-  }
-  
-  
+
+
+
   export default Main

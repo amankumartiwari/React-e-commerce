@@ -15,12 +15,12 @@ const Review = ({ setForm, formData, navigation }) => {
   const { go } = navigation;
 
   return (
-    <div className="row">
+    <div >
       <h3 id="logo">Review </h3>
 
       <div class="card">
         <div class="card-header">
-          <p style={{ marginTop: "-50px" }}>NAME</p>
+          <p style={{ marginTop: "10px" }}>NAME</p>
         </div>
         <div class="card-body">
           <p> First name: {`${firstName}`},</p>
@@ -35,7 +35,7 @@ const Review = ({ setForm, formData, navigation }) => {
 
       <div class="card">
         <div class="card-header">
-          <h3 style={{ marginTop: "-50px" }}>Address</h3>
+          <h3 style={{ marginTop: "10px" }}>Address</h3>
         </div>
         <div class="card-body">
           <p> Address: {`${address}`}</p>
@@ -51,7 +51,7 @@ const Review = ({ setForm, formData, navigation }) => {
 
       <div class="card">
         <div class="card-header">
-          <h3 style={{ marginTop: "-50px" }}>Contact</h3>
+          <h3 style={{ marginTop: "10px" }}>Contact</h3>
         </div>
         <div class="card-body">
           <p> Phone: {`${phone}`}</p>
