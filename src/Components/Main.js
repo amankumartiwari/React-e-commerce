@@ -6,24 +6,28 @@ const PostsData = [
     price: "200",
     subject: "CPP",
     publications: "ABC",
+    image:'https://images-na.ssl-images-amazon.com/images/I/51lxN5ltLBL._SX258_BO1,204,203,200_.jpg'
   },
   {
     name: "coding for students",
     price: "400",
     subject: "NODE",
     publications: "MNO",
+    image:'https://images-na.ssl-images-amazon.com/images/I/51lxN5ltLBL._SX258_BO1,204,203,200_.jpg'
   },
   {
     name: "React heros",
     price: "300",
     subject: "REACT",
     publications: "XYZ",
+    image:'https://images-na.ssl-images-amazon.com/images/I/51lxN5ltLBL._SX258_BO1,204,203,200_.jpg'
   },
   {
     name: "JAVASRCIPT",
     price: "200",
     subject: "JavaScript",
-    publications: "ijk",
+    publications: "IJK",
+    image:'https://images-na.ssl-images-amazon.com/images/I/51lxN5ltLBL._SX258_BO1,204,203,200_.jpg'
   },
   {
     name: "coding for beginners",
@@ -47,7 +51,7 @@ const PostsData = [
     name: "Advance JAVASRCIPT",
     price: "400",
     subject: "JavaScript",
-    publications: "mno",
+    publications: "XYZ",
   }
   ]
   
@@ -70,14 +74,50 @@ const PostsData = [
    
   
     render() {
+     const {filters} = this.props
+      let ans=[]
+      this.state.posts.forEach( myFunction)
+      function myFunction(item){
+        let i=0;
+              if( (filters.price==undefined || filters.price==null ) ){
+                               i++;
+              }else{
+                  if(filters.price == item.price){
+                                   i++;
+                  }             
+              }
+              
+              if( (filters.subject==undefined || filters.subject==null ) ){
+                               i++;
+              }else{
+                  if(filters.subject == item.subject){
+                                   i++;
+                  }             
+              }
+              
+              if( (filters.publications==undefined || filters.publications==null ) ){
+                               i++;
+              }else{
+                  if(filters.publications == item.publications){
+                                   i++;
+                  }             
+              }
+              
+              if(i==3){
+                   ans.push(item);            
+              }
+              
+}
+
+
       return <div>
         <header className="app-header"></header>
         <Title />
         <div className="app-card-list" id="app-card-list">
           {
-            //  this.state.posts.filter( val=> val.price="200").
+            
           
-           Object.keys(this.state.posts.filter( val=> val==this.props.filters)).map(key => <Card key={key} index={key} details={this.state.posts[key]}/>)
+           Object.keys(ans).map(key => <Card key={key} index={key} details={ans[key]}/>)
           
           }
       </div>
@@ -112,13 +152,13 @@ const PostsData = [
   
   class CardHeader extends React.Component {
     render() {
-      const { image, category } = this.props;
+      const { image, name } = this.props;
       var style = { 
           backgroundImage: 'url(' + image + ')',
       };
       return (
         <header style={style} className="card-header">
-          <h4 className="card-header--title">{category}</h4>
+          <h4 className="card-header--title">{name}</h4>
         </header>
       )
     }
@@ -146,7 +186,7 @@ const PostsData = [
     render() {
       return (
         <article className="card">
-          <CardHeader category={this.props.details.category} image={this.props.details.image}/>
+          <CardHeader name={this.props.details.name} image={this.props.details.image}/>
           <CardBody title={this.props.details.title} text={this.props.details.text}/>
         </article>
       )

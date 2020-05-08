@@ -1,39 +1,47 @@
 import React from "react";
-import Main from './Main'
+import Main from "./Main";
 const filters = [
-  { id: "name", title: "Name", type: "string" },
-  { id: "color", title: "Color", type: "choice", choices: ["blue", "orange"] },
+  // { id: "name", title: "Name", type: "string" },
   {
-    id: "height",
-    title: "Height",
+    id: "price",
+    title: "Price",
     type: "choice",
-    choices: ["tiny", "small", "big", "huge"],
+    choices: ["200", "300", "400"],
   },
   {
-    id: "width",
-    title: "Width",
+    id: "subject",
+    title: "Subject",
     type: "choice",
-    choices: ["tiny", "small", "big", "huge"],
+    choices: ["CPP", "REACT", "NODE", "JavaScript"],
+  },
+  {
+    id: "publications",
+    title: "Publication",
+    type: "choice",
+    choices: ["ABC", "IJK", "MNO", "XYZ"],
   },
 ];
 
-
 const filterComponents = {
-  string: ({ filter, onChange, value }) => (
-    <input
-      value={value || ""}
-      onInput={(e) => onChange(filter.id, e.target.value)}
-    />
-  ),
+  // string: ({ filter, onChange, value }) => (
+  //   <input
+  //     value={value || ""}
+  //     onInput={(e) => onChange(filter.id, e.target.value)}
+  //   />
+  // ),
   choice: ({ filter, onChange, value }) => (
     <select
+      style={{ height: "125px", width:'auto', overflowY: "hidden", border: "0px" }}
+      type="radio"
       value={value || ""}
       onInput={(e) => onChange(filter.id, e.target.value)}
       size={1 + filter.choices.length}
     >
-      <option value="">(none)</option>
+      <option style={{color:'black'}} type="radio" value="">
+        (none)
+      </option>
       {filter.choices.map((c) => (
-        <option value={c} key={c}>
+        <option style={{color:'black',marginTop:'5px'}}  value={c} key={c}>
           {c}
         </option>
       ))}
@@ -57,7 +65,7 @@ class Submit extends React.Component {
     const Component = filterComponents[f.type];
     return (
       <div key={f.id}>
-        <b>{f.title}</b>
+        <h3>{f.title}</h3>
         <Component
           filter={f}
           value={this.state.filters[f.id]}
@@ -68,14 +76,14 @@ class Submit extends React.Component {
   }
   render() {
     return (
-      <table>
-        <tbody>
-          <tr>
-            <td>{filters.map((f) => this.renderFilter(f))}</td>
-            <Main filters = {this.state.filters} />
-          </tr>
-        </tbody>
-      </table>
+      <div>
+        <div style={{ width: "20%",height:'auto',display:'inline-flex' }}>
+          {filters.map((f) => this.renderFilter(f))}
+        </div>
+        <div style={{ width: "70%" ,display:'inline' }}>
+          <Main filters={this.state.filters} />
+        </div>
+      </div>
     );
   }
 }
